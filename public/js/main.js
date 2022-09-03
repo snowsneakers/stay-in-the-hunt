@@ -48,7 +48,7 @@ function setTodaysDate(){
         '11' :'Nov',
         '12' :'Dec' 
    }
-   console.log(monthsKey[mm])
+   //selects this month as default on load
     for(let i = 0; i<months.length; i++){
         if(months[i].firstChild.getAttribute('title') == monthsKey[mm]){             
               months[i].firstChild.classList.add('selected')
@@ -61,11 +61,32 @@ function setTodaysDate(){
             days[i].firstChild.classList.add('selected')
         }
     }
-
-
+    const skipDays = {
+        Jan: 5,
+        Feb: 1,
+        Mar: 1,
+        Apr: 4,
+        May: 6,
+        Jun: 2,
+        Jul: 4,
+        Aug: 0,
+        Sep: 3,
+        Oct: 5,
+        Nov: 1,
+        Dec: 3
+    }
+    const ul = document.getElementById('days')
+    const li = document.createElement('li')
+    const anchor = document.createElement('a')
+    
+    for(let i = 0; i < skipDays[monthsKey[mm]]; i++){   
+        li.classList.add('blank') 
+        ul.insertBefore(li.cloneNode(true), ul.firstChild).appendChild(anchor.cloneNode(true)).appendChild(document.createTextNode(''))
+        
+    }
 }
 
-
+//selects the day that has been clicked on
 function selectDay(){
     const days = document.getElementById('days').childNodes
     for(let i = 1; i<days.length-1; i++){
@@ -77,6 +98,7 @@ function selectDay(){
 }
 
 function selectMonth(){
+    //selects the clicked month
     const months = document.getElementById('months').childNodes
     for(let i = 0; i<months.length; i++){
         if(months[i].firstChild){
@@ -85,7 +107,7 @@ function selectMonth(){
     }
     const selectedMonth = this.getAttribute('title')
     this.className= 'selected'
-    
+    //put the correct number of days for the selected month
     function numOfDays(){
         const daysEachMonth = {
             Jan: 31,
@@ -101,11 +123,10 @@ function selectMonth(){
             Nov: 30,
             Dec: 31
         }
+
+
     const numOfDaysThisMonth = daysEachMonth[selectedMonth]
-    const days = document.getElementById('days')
-
-    let numOfDaysPrevMonth = days.children.length
-
+    const numOfDaysPrevMonth = Array.from(document.getElementsByClassName('day')).length  
     const daysToChange = numOfDaysThisMonth - numOfDaysPrevMonth
     let dateCounter = numOfDaysPrevMonth + 1
     const ul = document.getElementById('days')
@@ -128,10 +149,40 @@ function selectMonth(){
         }
     }
 }
+    //starts the month on the correct day of the week
     function firstDayOfTheMonth(){
+        const skipDays = {
+            Jan: 5,
+            Feb: 1,
+            Mar: 1,
+            Apr: 4,
+            May: 6,
+            Jun: 2,
+            Jul: 4,
+            Aug: 0,
+            Sep: 3,
+            Oct: 5,
+            Nov: 1,
+            Dec: 3
+        }
 
-    }
 
+        //removes previous blank spaces
+        const blanks = document.getElementsByClassName('blank')
+         while(blanks.length > 0){
+             blanks[0].parentNode.removeChild(blanks[0])
+        }
+        //adds new blank spaces
+        const ul = document.getElementById('days')
+        const li = document.createElement('li')
+        const anchor = document.createElement('a')
+        for(let i = 0; i < skipDays[selectedMonth]; i++){   
+            li.classList.add('blank') 
+            ul.insertBefore(li.cloneNode(true), ul.firstChild ).appendChild(anchor.cloneNode(true)).appendChild(document.createTextNode(''))
+            
+        }
+        
+    }       
 firstDayOfTheMonth()
 numOfDays()
 }
