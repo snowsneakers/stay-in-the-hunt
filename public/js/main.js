@@ -25,7 +25,48 @@ Array.from(monthSelector).forEach((el)=>{
     el.addEventListener('click', selectMonth)
 })
 
-async function selectDay(){
+addEventListener('DOMContentLoaded', setTodaysDate())
+
+
+function setTodaysDate(){
+    const days = document.getElementById('days').children
+    const months = document.getElementById('months').children
+    var today = new Date()
+    var dd = String(today.getDate());
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const monthsKey ={
+        '01' :'Jan',
+        '02' :'Feb',
+        '03' :'Mar',
+        '04' :'Apr',
+        '05' :'May',
+        '06' :'Jun',
+        '07' :'Jul',
+        '08' :'Aug',
+        '09' :'Sep',
+        '10' :'Oct',
+        '11' :'Nov',
+        '12' :'Dec' 
+   }
+   console.log(monthsKey[mm])
+    for(let i = 0; i<months.length; i++){
+        if(months[i].firstChild.getAttribute('title') == monthsKey[mm]){             
+              months[i].firstChild.classList.add('selected')
+          }
+      }
+
+    //selects todays date as the default on load
+    for(let i = 1; i<days.length-1; i++){
+      if(days[i].firstChild.getAttribute('title') == dd){             
+            days[i].firstChild.classList.add('selected')
+        }
+    }
+
+
+}
+
+
+function selectDay(){
     const days = document.getElementById('days').childNodes
     for(let i = 1; i<days.length-1; i++){
       if(days[i].firstChild){      
@@ -35,7 +76,7 @@ async function selectDay(){
     this.firstChild.className = 'selected'
 }
 
-async function selectMonth(){
+function selectMonth(){
     const months = document.getElementById('months').childNodes
     for(let i = 0; i<months.length; i++){
         if(months[i].firstChild){
@@ -70,7 +111,7 @@ async function selectMonth(){
     const ul = document.getElementById('days')
     const li = document.createElement('li')
     const anchor = document.createElement('a')
-    console.log(numOfDaysPrevMonth)
+
     if (daysToChange > 0){
         for(let i = 0; i< daysToChange; i++){
             li.classList.add('day')   
@@ -82,11 +123,16 @@ async function selectMonth(){
         }
     }
     if(daysToChange < 0){
-        for(let i = 0; i>=daysToChange; i--){
+        for(let i = 0; i>daysToChange; i--){
         ul.removeChild(ul.lastChild)
         }
     }
 }
+    function firstDayOfTheMonth(){
+
+    }
+
+firstDayOfTheMonth()
 numOfDays()
 }
 
