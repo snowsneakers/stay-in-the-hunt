@@ -44,7 +44,50 @@ async function selectMonth(){
     }
     const selectedMonth = this.getAttribute('title')
     this.className= 'selected'
+    
+    function numOfDays(){
+        const daysEachMonth = {
+            Jan: 31,
+            Feb: 28,
+            Mar: 31,
+            Apr: 30,
+            May: 31,
+            Jun: 30,
+            Jul: 31,
+            Aug: 31,
+            Sep: 30,
+            Oct: 31,
+            Nov: 30,
+            Dec: 31
+        }
+    const numOfDaysThisMonth = daysEachMonth[selectedMonth]
+    const days = document.getElementById('days')
 
+    let numOfDaysPrevMonth = days.children.length
+
+    const daysToChange = numOfDaysThisMonth - numOfDaysPrevMonth
+    let dateCounter = numOfDaysPrevMonth + 1
+    const ul = document.getElementById('days')
+    const li = document.createElement('li')
+    const anchor = document.createElement('a')
+    console.log(numOfDaysPrevMonth)
+    if (daysToChange > 0){
+        for(let i = 0; i< daysToChange; i++){
+            li.classList.add('day')   
+            anchor.setAttribute('href', '#')
+            anchor.setAttribute('title', dateCounter)
+            anchor.setAttribute('data-value', dateCounter) 
+            ul.appendChild(li.cloneNode(true)).appendChild(anchor.cloneNode(true)).appendChild(document.createTextNode(dateCounter))
+            dateCounter++
+        }
+    }
+    if(daysToChange < 0){
+        for(let i = 0; i>=daysToChange; i--){
+        ul.removeChild(ul.lastChild)
+        }
+    }
+}
+numOfDays()
 }
 
 async function deleteTodo(){
@@ -100,5 +143,4 @@ async function markIncomplete(){
         console.log(err)
     }
 }
-
 
