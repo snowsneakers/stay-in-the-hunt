@@ -17,7 +17,7 @@ Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', markIncomplete)
 })
 
-//hamburgerBtn.addEventListener('click', toggleNavBar)
+hamburgerBtn.addEventListener('click', toggleNavBar)
 
 async function toggleNavBar() {
     let header = document.querySelector('.header')
