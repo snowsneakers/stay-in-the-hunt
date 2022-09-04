@@ -116,13 +116,16 @@ module.exports = {
             userId: user.id
         };
         const pushCode = () => {
-            return { task: "Push code to Github" };
+            return { task: "push code to github" };
         }
         const codewars = () => {
-            return { task: "Complete one coding challenge" };
+            return { task: "coding challenge" };
         }
         const banki = () => {
-            return { task: "Study THE BANK" };
+            return { task: "BANKI" };
+        }
+        const anki = () => {
+            return { task: "ANKI" };
         }
 
         const tasksToAdd = [hitlist, client, mvp100Hours, complete100Hours, premiumApps];
@@ -134,6 +137,7 @@ module.exports = {
             const newPushCode = pushCode();
             const newCodewars = codewars();
             const newBanki = banki();
+            const newAnki = anki();
 
             newPushCode.day = currDate.getDate();
             newPushCode.month = currDate.getMonth();
@@ -146,10 +150,15 @@ module.exports = {
             newBanki.day = currDate.getDate();
             newBanki.month = currDate.getMonth();
             newBanki.userId = user.id
+          
+            newAnki.day = currDate.getDate();
+            newAnki.month = currDate.getMonth();
+            newAnki.userId = user.id
 
+            tasksToAdd.push(newAnki);
+            tasksToAdd.push(newBanki);
             tasksToAdd.push(newPushCode);
             tasksToAdd.push(newCodewars);
-            tasksToAdd.push(newBanki);
 
             console.log(currDate);
             console.log(endDate);
