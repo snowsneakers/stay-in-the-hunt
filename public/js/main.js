@@ -272,7 +272,7 @@ class Calendar {
 
                 
                 // If start and end time are defined, add them
-                if(x.startTime != undefined && x.endTime != undefined) {
+                if(x.startTime != undefined && x.endTime != undefined && x.startTime != "" && x.endTime != "") {
                     li.innerHTML = `
                     <div class="taskInfo">
                         <span class="filteredTasks">${x.task}</span>
@@ -281,10 +281,10 @@ class Calendar {
                     <a href="#" title="Remove note" class="removeNote animate del" onclick="deleteTodo(this.parentNode.dataset.id)">x</a>`
                 } else {
                     li.innerHTML = `
-                    <div class="taskInfo>
+                    <div class="taskInfo">
                         <span class="filteredTasks">${x.task}</span>
                     </div>
-                    <a href="#" title="Remove note" class="removeNote animate del" onclick="deleteTodo(this.parentNode.dataset.id)">x</a>`      
+                    <a href="#" title="Remove note" class="removeNote animate del" onclick="deleteTodo(this.parentNode.dataset.id)">x</a>` 
                 }
 
                 this.taskList.appendChild(li);
