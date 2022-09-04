@@ -416,6 +416,9 @@ text-decoration: none;
 .calendar .days li a{
 	display: block;
 	color: #747978;
+	user-select: none;
+	cursor: pointer;
+
 }
 
 .calendar .months li a{
