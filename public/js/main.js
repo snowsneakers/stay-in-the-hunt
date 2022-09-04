@@ -270,12 +270,21 @@ class Calendar {
                 li.classList.add("todoItem");
                 li.dataset.id = x._id;
 
-                li.innerHTML = `<span class="filteredTasks">${x.task}</span>
-                                <a href="#" title="Remove note" class="removeNote animate del" onclick="deleteTodo(this.parentNode.dataset.id)">x</a>`
-
+                
                 // If start and end time are defined, add them
                 if(x.startTime != undefined && x.endTime != undefined) {
-                    li.innerHTML += `<span style="display: block">${x.startTime} - ${x.endTime}</span>`
+                    li.innerHTML = `
+                    <div class="taskInfo">
+                        <span class="filteredTasks">${x.task}</span>
+                        <span style="display: block">${x.startTime} - ${x.endTime}</span>
+                    </div>
+                    <a href="#" title="Remove note" class="removeNote animate del" onclick="deleteTodo(this.parentNode.dataset.id)">x</a>`
+                } else {
+                    li.innerHTML = `
+                    <div class="taskInfo>
+                        <span class="filteredTasks">${x.task}</span>
+                    </div>
+                    <a href="#" title="Remove note" class="removeNote animate del" onclick="deleteTodo(this.parentNode.dataset.id)">x</a>`      
                 }
 
                 this.taskList.appendChild(li);
