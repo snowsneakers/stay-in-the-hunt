@@ -364,8 +364,16 @@ text-decoration: none;
 	overflow-y: auto;
 }
 
+.taskInfo{
+	display: flex;
+	flex-direction: column;
+}
+
 .todoItem {
 	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .todoItem .filteredTasks{
 	font-weight: 700;
