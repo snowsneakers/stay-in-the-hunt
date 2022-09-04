@@ -379,6 +379,14 @@ text-decoration: none;
 	font-weight: 700;
 }
 
+.completed{
+	text-decoration: line-through;
+}
+
+.not{
+	text-decoration: none;
+}
+
 .calendar .leftCol h1{
 	color: #ffffff;
 }
