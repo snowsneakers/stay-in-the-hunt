@@ -247,6 +247,9 @@ text-decoration: none;
 	top: 50%;
 	background-color: #ffffff;
 	color: #333333;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
 }
 
 .calendar h1, .calendar h2{
@@ -263,7 +266,7 @@ text-decoration: none;
 
 .calendar .col{
 	position: relative;
-	float: left;
+	/* float: left; */
 	height: 100%;
 }
 
@@ -467,4 +470,29 @@ text-decoration: none;
 
 .calendar .days .disabled {
 	pointer-events: none;
+}
+
+/* Calendar Responsiveness */
+@media screen and (max-width: 835px) {
+	.calendar {
+		/* position: absolute; */
+		flex-wrap: wrap;
+		width: 90%;
+		height: 110%;
+		top: 300px;
+		left: 55%;
+	}
+	.calendar .col{
+		/* float: none; */
+		/* position: relative; */
+	}
+	.calendar .leftCol {
+		width: 80%;
+		height: 425px;
+	}
+	.calendar .rightCol {
+		width: 80%;
+		height: 100%;
+
+	}
 }
