@@ -1,6 +1,5 @@
 const Todo = require('../models/Todo')
 const Task = require("../models/Task")
-const { findOne } = require('../models/Todo')
 
 module.exports = {
     getTodos: async (req,res)=>{
