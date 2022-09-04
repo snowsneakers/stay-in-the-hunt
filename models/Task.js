@@ -6,6 +6,7 @@ day: {type: String, required: true},
 month: {type: String, required: true},
 startTime: {type: String},
 endTime: {type: String},
+completed: {type: Boolean},
 userId: { type: String, required: true}
 }, {timestamps: true})
 
