@@ -17,13 +17,16 @@ module.exports = {
     //just added the fields we want
     createTodo: async (req, res)=>{
         const {task, day, month, startTime, endTime} = req.body
+        const timeCompare = startTime > endTime
         const validationErrors = []
         try{
     if (!task || !day || !month) validationErrors.push({ msg: 'Please enter a task.' })
+    if (timeCompare) validationErrors.push({ msg: 'Task end time must be after start time' })
     if (validationErrors.length) {
         req.flash('errors', validationErrors)
         return res.redirect('/todos')
       }
+
            await Task.create({
                 task: task,
                 day: day,
