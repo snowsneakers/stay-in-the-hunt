@@ -11,18 +11,22 @@ module.exports = {
             // res.json(taskItems)
         }catch(err){
             console.log(err)
+            res.status(404).send(err.message)
         }
     },
     //just added the fields we want
     createTodo: async (req, res)=>{
         const {task, day, month, startTime, endTime} = req.body
+        const timeCompare = startTime > endTime
         const validationErrors = []
         try{
     if (!task || !day || !month) validationErrors.push({ msg: 'Please enter a task.' })
+    if (timeCompare) validationErrors.push({ msg: 'Task end time must be after start time' })
     if (validationErrors.length) {
         req.flash('errors', validationErrors)
         return res.redirect('/todos')
       }
+
            await Task.create({
                 task: task,
                 day: day,
@@ -71,6 +75,7 @@ module.exports = {
             res.json('Marked Complete')
         }catch(err){
             console.log(err)
+            res.status(400).send(err.message)
         }
     },
     markIncomplete: async (req, res)=>{
@@ -82,6 +87,7 @@ module.exports = {
             res.json('Marked Incomplete')
         }catch(err){
             console.log(err)
+            res.status(400).send(err.message)
         }
     },
     deleteTodo: async (req, res)=>{
@@ -92,6 +98,7 @@ module.exports = {
             res.json('Deleted It')
         }catch(err){
             console.log(err)
+            res.status(400).send(err.message)
         }
     },
     //get todos based on url params like /todos/oct/10
