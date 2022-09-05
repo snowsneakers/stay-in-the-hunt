@@ -11,6 +11,7 @@ module.exports = {
             // res.json(taskItems)
         }catch(err){
             console.log(err)
+            res.status(404).send(err.message)
         }
     },
     //just added the fields we want
@@ -71,6 +72,7 @@ module.exports = {
             res.json('Marked Complete')
         }catch(err){
             console.log(err)
+            res.status(400).send(err.message)
         }
     },
     markIncomplete: async (req, res)=>{
@@ -82,6 +84,7 @@ module.exports = {
             res.json('Marked Incomplete')
         }catch(err){
             console.log(err)
+            res.status(400).send(err.message)
         }
     },
     deleteTodo: async (req, res)=>{
@@ -92,6 +95,7 @@ module.exports = {
             res.json('Deleted It')
         }catch(err){
             console.log(err)
+            res.status(400).send(err.message)
         }
     },
     //get todos based on url params like /todos/oct/10
