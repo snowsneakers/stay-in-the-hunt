@@ -31,16 +31,18 @@
                 <div class="notes">
                    <!-- are they able to add to the list? -->
                     <form action="/todos/createTodo" method="POST">
-                        <input class="todo--task animate" type="text" name="task" placeholder="Add new task"/>
-                        <label class="todo--label" for="startTime">Start</label>
-                        <input class="todo--input__date animate" type="time" name="startTime"/>
-                        <label class="todo--label" for="endTime">End</label>
-                        <input class="todo--input__date animate" type="time" name="endTime"/>
-                        <!-- these hidden input contain the day and month data that will get stored in the database so we can filter the tasks by month and day -->
-                        <!-- these input values changed based on month and day that are selected -->
-                        <input type="hidden" name="day" class="dbDay" value=""  />
-                        <input type="hidden" name="month" class="dbMonth" value=""  />
-                        <button type="submit" href="#" title="Add note" class="addNote animate">+</button>
+                        <div>
+                            <input class="todo--task animate" type="text" name="task" placeholder="Add new task" autocomplete="off"/>
+                            <label class="todo--label" for="startTime">Start</label>
+                            <input class="todo--input__date animate" type="time" name="startTime"/>
+                            <label class="todo--label" for="endTime">End</label>
+                            <input class="todo--input__date animate" type="time" name="endTime"/>
+                            <!-- these hidden input contain the day and month data that will get stored in the database so we can filter the tasks by month and day -->
+                            <!-- these input values changed based on month and day that are selected -->
+                            <input type="hidden" name="day" class="dbDay" value=""  />
+                            <input type="hidden" name="month" class="dbMonth" value=""  />
+                        </div>
+                        <button type="submit" href="#" title="Add task" class="addNote animate">+</button>
                     </form>
                     
                     <!-- add todo list functionaliliy -->
