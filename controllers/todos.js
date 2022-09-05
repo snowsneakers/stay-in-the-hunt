@@ -15,20 +15,28 @@ module.exports = {
     },
     //just added the fields we want
     createTodo: async (req, res)=>{
+        const {task, day, month, startTime, endTime} = req.body
+        const validationErrors = []
         try{
+    if (!task || !day || !month) validationErrors.push({ msg: 'Please enter a task.' })
+    if (validationErrors.length) {
+        req.flash('errors', validationErrors)
+        return res.redirect('/todos')
+      }
            await Task.create({
-                task: req.body.task,
-                day: req.body.day,
-                month: req.body.month,
-                startTime: req.body.startTime,
-                endTime: req.body.endTime,
+                task: task,
+                day: day,
+                month: month,
+                startTime: startTime,
+                endTime: endTime,
                 completed: false,
                 userId: req.user.id
             })
-            console.log('Todo has been added!')
+            // req.flash("success", "Task added")
+
             res.redirect('/todos')
         }catch(err){
-            res.status(400).json({error: err.message})
+            res.status(400).send(err.message)
         }
     },
     //original function

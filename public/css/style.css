@@ -399,6 +399,12 @@ text-decoration: none;
 	scrollbar-width: none;  /* Firefox */
   }
 
+  .alert{
+	padding: 1px 2px;
+	color: rgb(251, 251, 251);
+	border-radius: 5px;
+  }
+
 .completed{
 	text-decoration: line-through;
 }
