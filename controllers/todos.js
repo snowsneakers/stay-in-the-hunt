@@ -22,6 +22,7 @@ module.exports = {
                 month: req.body.month,
                 startTime: req.body.startTime,
                 endTime: req.body.endTime,
+                completed: false,
                 userId: req.user.id
             })
             console.log('Todo has been added!')
@@ -42,9 +43,22 @@ module.exports = {
     // },
     markComplete: async (req, res)=>{
         try{
-            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+            const task = await Task.findOne({_id: req.body.todoIdFromJSFile})
+
+            if(!task){
+                console.log('not found')
+            }
+           
+            await Task.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
                 completed: true
             })
+
+            if(task.completed == true){
+                await Task.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                    completed: false
+                })
+            }
+
             console.log('Marked Complete')
             res.json('Marked Complete')
         }catch(err){
@@ -77,7 +91,7 @@ module.exports = {
     //sends tasks back in json
     getTodosByDate: async (req,res) => {
         try {
-            const tasks = await Task.find({userId: req.user.id, month: req.params.month, day: req.params.day })
+            const tasks = await Task.find({userId: req.user.id, month: req.params.month, day: req.params.day }).sort({completed: 1})
             res.json(tasks)
         } catch (error) {
             res.status(400).json({error: error.message})

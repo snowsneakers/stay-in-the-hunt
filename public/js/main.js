@@ -46,32 +46,14 @@ async function deleteTodo(id){
     }
 }
 
-async function markComplete(){
-    const todoId = this.parentNode.dataset.id
+async function markComplete(id){
+    console.log(id)
     try{
         const response = await fetch('todos/markComplete', {
             method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    }catch(err){
-        console.log(err)
-    }
-}
-
-async function markIncomplete(){
-    const todoId = this.parentNode.dataset.id
-    try{
-        const response = await fetch('todos/markIncomplete', {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'todoIdFromJSFile': id
             })
         })
         const data = await response.json()
@@ -210,7 +192,7 @@ class Calendar {
         Add event listeners to all day anchors. Want day anchors over the li since the anchors are what give hover feedback.
     */
     activate_day_selector() {
-        console.log(this.days);
+        // console.log(this.days);
         this.days.forEach(x => x.addEventListener("click", this.change_day.bind(this)));
     }
 
@@ -263,26 +245,30 @@ class Calendar {
             item.innerText = "No tasks to display";
             this.taskList.appendChild(item);
         }
-        else
-        { // Tasks to display:
+        else { // Tasks to display:
             data.forEach( x => {
                 const li = document.createElement("li");
                 li.classList.add("todoItem");
                 li.dataset.id = x._id;
-
+                const isComplete = x.completed ? "completed" : "not"
                 
+                if(x.startTime && x.endTime){
+                   var startTime =  tConvert(x.startTime)
+                   var endTime = tConvert(x.endTime)
+                }
+
                 // If start and end time are defined, add them
                 if(x.startTime != undefined && x.endTime != undefined && x.startTime != "" && x.endTime != "") {
                     li.innerHTML = `
-                    <div class="taskInfo">
-                        <span class="filteredTasks">${x.task}</span>
-                        <span style="display: block">${x.startTime} - ${x.endTime}</span>
+                    <div class="taskInfo" onclick="markComplete(this.parentNode.dataset.id)">
+                        <span class="filteredTasks ${isComplete}">${x.task}</span>
+                        <span style="display: block">${startTime} - ${endTime}</span>
                     </div>
                     <a href="#" title="Remove note" class="removeNote animate del" onclick="deleteTodo(this.parentNode.dataset.id)">x</a>`
                 } else {
                     li.innerHTML = `
-                    <div class="taskInfo">
-                        <span class="filteredTasks">${x.task}</span>
+                    <div class="taskInfo" onclick="markComplete(this.parentNode.dataset.id)">
+                        <span class="filteredTasks ${isComplete}">${x.task}</span>
                     </div>
                     <a href="#" title="Remove note" class="removeNote animate del" onclick="deleteTodo(this.parentNode.dataset.id)">x</a>` 
                 }
@@ -320,3 +306,16 @@ function get_month(numericMonth) {
 
 // Start calendar
 const cal = new Calendar;
+
+
+function tConvert (time) {
+    // Check correct time format and split into components
+    time = time.match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+  
+    if (time.length > 1) { // If time format correct
+      time = time.slice (1);  // Remove full string match value
+      time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+      time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join (''); // return adjusted time or original string
+  }

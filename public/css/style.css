@@ -89,9 +89,13 @@ a{
 	margin-left: 1.25rem;
 	display: inline-block;
 }
+.header--welcome{
+	font-size: 1.5rem;
+}
 .nav--hambrgBtn {
 	font-size: 24px;
 	display: none;
+	margin-left: 1.25rem;
 }
 .expanded {
 	height: 135px;
@@ -379,6 +383,14 @@ text-decoration: none;
 	font-weight: 700;
 }
 
+.completed{
+	text-decoration: line-through;
+}
+
+.not{
+	text-decoration: none;
+}
+
 .calendar .leftCol h1{
 	color: #ffffff;
 }
@@ -534,6 +546,9 @@ text-decoration: none;
 		padding: 40px;
 	}
 
+	.header--welcome{
+		display: none;
+	}
 
 }
 
