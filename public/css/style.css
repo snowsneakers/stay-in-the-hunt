@@ -159,7 +159,7 @@ a{
 /*******************************/
 /* Landing Page */
 .heroSection {
-	max-width: 2560px;
+	max-width: 1920px;
 	margin: 0 auto;
 	min-height: 82.5vh;
 	padding: 10vh 12.5vw;
@@ -169,10 +169,11 @@ a{
 	/* border: 1px solid red; */
 }
 .heroSection__right {
-	margin-left: auto;
+	margin-left: 2rem;
 }
 .heroSection--text {
-	margin-bottom: 3.5rem;
+	margin: 0 auto 2.5rem auto;
+	max-width: 400px;
 }
 .heroSection--text p{
 	line-height: 1.1;
@@ -244,10 +245,13 @@ text-decoration: none;
 	.heroSection {
 			display: block;
 			text-align: center;
-			padding-top: 6vh;
+			padding: 6vh 2vw 0 2vw;
 	}
 	.heroSection--logo {
 			margin-bottom: 5vh;
+	}
+	.heroSection__right{
+		margin-left: 0;
 	}
 }
 
