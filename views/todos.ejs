@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Stay in the Hunt</title>
     <script src="https://kit.fontawesome.com/a2f02755e4.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- App Header & Navbar -->
     <header class="header">
         <a class="header--linkLogo" href="/"><i class="header--logo fa-solid fa-circle-check"></i></a>
-        <h3 class="header--appName">Huntober App Name</h3>
+        <h3 class="header--appName">SITH</h3>
+        <span class=" header--welcome">Welcome, <%= user.userName %></span>
         <i class="nav--hambrgBtn fa-solid fa-bars"></i>
         <nav class="nav">
             <ul class="nav--list">
@@ -25,21 +27,28 @@
 
         <div class="col leftCol">
             <div class="content">
-                <h1 class="todays-day">Friday</h1>
+                <h1 class="selected-day">Friday</h1>
                 <h1><span class="month-day">September 12th</span></h1>
                 <div class="notes">
                    <!-- are they able to add to the list? -->
                     <form action="/todos/createTodo" method="POST">
-                        <input class="todo--task animate" type="text" name="task" placeholder="Add new task"/>
-                        <label class="todo--label" for="startTime">Start</label>
-                        <input class="todo--input__date animate" type="time" name="startTime"/>
-                        <label class="todo--label" for="endTime">End</label>
-                        <input class="todo--input__date animate" type="time" name="endTime"/>
-                        <!-- these hidden input contain the day and month data that will get stored in the database so we can filter the tasks by month and day -->
-                        <!-- these input values changed based on month and day that are selected -->
-                        <input type="hidden" name="day" class="dbDay" value=""  />
-                        <input type="hidden" name="month" class="dbMonth" value=""  />
-                        <button type="submit" href="#" title="Add note" class="addNote animate">+</button>
+                        <div>
+                            <input class="todo--task animate" type="text" name="task" placeholder="Add new task here" autocomplete="off"/>
+                            <label class="todo--label" for="startTime">Start</label>
+                            <input class="todo--input__date animate" type="time" name="startTime"/>
+                            <label class="todo--label" for="endTime">End</label>
+                            <input class="todo--input__date animate" type="time" name="endTime"/>
+                            <!-- these hidden input contain the day and month data that will get stored in the database so we can filter the tasks by month and day -->
+                            <!-- these input values changed based on month and day that are selected -->
+                            <input type="hidden" name="day" class="dbDay" value=""  />
+                            <input type="hidden" name="month" class="dbMonth" value=""  />
+                            <% if (locals.messages.errors) { %>
+                                <% messages.errors.forEach( el => { %>
+                                    <div class="alert alert-danger"><%= el.msg %></div>
+                                <% }) %>    
+                            <% } %>
+                        </div>
+                        <button type="submit" title="Add task" class="addNote animate">+</button>
                     </form>
                     
                     <!-- add todo list functionaliliy -->
@@ -77,7 +86,7 @@
                     <li><a href="#" title="Say" data-value="6">Sat</a></li>
                     <li><a href="#" title="Sun" data-value="7">Sun</a></li>
                 </ul>
-                <div class="clearfix"></div>
+                <!-- <div class="clearfix"></div> -->
                 
                 <!--calendar functionality -->
                 <ul class="days" id="days">
