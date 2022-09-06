@@ -144,6 +144,16 @@ a{
 	border-radius: 4px;
 }
 
+/* Buttons Hover Effects */
+.btn--primary:hover, .btn--secondary:hover {
+	border: 2px solid black;
+}
+
+.registration--btn:hover {
+	border: 1px solid black;
+	color: black;
+	cursor: pointer;
+}
 
 /*******************************/
 /****  MAIN PAGES STYLING  *****/
@@ -403,6 +413,13 @@ text-decoration: none;
 	padding: 1px 2px;
 	color: rgb(251, 251, 251);
 	border-radius: 5px;
+  }
+
+  .alert-danger {
+	color: red;
+    margin-top: 10px;
+    border: 1px solid red;
+    padding: 10px;
   }
 
 .completed{
