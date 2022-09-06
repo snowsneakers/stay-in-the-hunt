@@ -159,7 +159,7 @@ a{
 /*******************************/
 /* Landing Page */
 .heroSection {
-	max-width: 1440px;
+	max-width: 2560px;
 	margin: 0 auto;
 	min-height: 82.5vh;
 	padding: 10vh 12.5vw;
@@ -194,6 +194,10 @@ a{
 	padding-top: 1.5vh;
 	padding-bottom: 1.5vh;
 	border-top: 1px solid #74797865;
+}
+.footer a{
+	color: black;
+	font-weight: 500;
 }
 
 /* Login & Signup Page */
