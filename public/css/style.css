@@ -150,7 +150,7 @@ a{
 /*******************************/
 /* Landing Page */
 .heroSection {
-	height: 82.5vh;
+	min-height: 82.5vh;
 	padding: 10vh 12.5vw;
 	display: flex;
 	justify-content: space-between;
