@@ -245,7 +245,7 @@ text-decoration: none;
 	.heroSection {
 			display: block;
 			text-align: center;
-			padding: 6vh 2vw 0 2vw;
+			padding: 6vh 2vw 6vh 2vw;
 	}
 	.heroSection--logo {
 			margin-bottom: 5vh;
