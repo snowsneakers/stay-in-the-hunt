@@ -10,6 +10,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#about-the-project"> About The Project</a></li>
+    <li><a href="#how-it's-made"> How It's Made</a></li>
     <li><a href="#overview"> Overview</a></li>
     <li><a href="#getting-started"> Getting Started</a></li>
     <li><a href="#credits"> Credits</a></li>
@@ -21,6 +22,13 @@
 
 <p align="justify"> 
   This project was built to help our friends at 100Devs stay in the game, helping them to track the different activities we need to do before Huntober.
+</p>
+
+<!-- HOW IT'S MADE -->
+<h2 id="how-it's-made"> 💻 How It's Made</h2>
+
+<p align="justify"> 
+  This project was made using HTML, CSS, JS in the frontend. OPP was used to create the calendar class. Node.js and MongoDB were used in the backend. MVC was used to orgainize the backend. 
 </p>
 
 <!-- OVERVIEW -->
